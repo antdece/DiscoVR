@@ -36,8 +36,11 @@ def post(request):
 		form = PostForm(request.POST)
 
 		if form.is_valid():
-			form.cleaned_data['username'] = request.user
-			form.save()
+			print('valid form')
+			post = form.save(commit=False)
+			post.username = request.user
+			print(post.username.username)
+			post.save()
 			return redirect('index')
 
 	else:

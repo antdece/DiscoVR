@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Post(models.Model):
-	username = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+	username = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
 	description = models.TextField()
 	date_added = models.DateTimeField(default=timezone.now)
 	thumb = models.ImageField(default='default.png', blank=True)
