@@ -10,11 +10,11 @@
 	<form method="POST" action="{% url 'post' %}">
 		{% csrf_token %}
 
-		{% if not form.is_valid %}
-		<p>error</p>
-		{% endif %}
+		{{ form.description }}
 
-		{{form}}
+		{% if form.errors %}
+		<p>there are errors</p>
+		{% endif %}
 
 		<button>Submit</button>
 	</form>
