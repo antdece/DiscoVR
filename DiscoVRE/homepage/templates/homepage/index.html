@@ -81,12 +81,13 @@
       <div class="album py-5">
 
         <div class="container">
-	        
+
           <div class="row">
-	          
+
             {% for p in posts %}
             <div class="col-md-8 offset-md-2 my-4">
               <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="{{p.thumb}}" alt="Card image cap">
                 <img class="card-img-top" data-src="holder.js/100px425?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
                 <div class="card-body">
                   <p class="card-text">{{ p.username }}</p>
