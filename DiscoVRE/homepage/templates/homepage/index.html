@@ -85,14 +85,14 @@
           <div class="row">
 
             {% for p in posts %}
-            <div class="col-md-8 offset-md-2 my-4">
+            <div class="col-md-10 offset-md-1 my-4">
               <div class="card mb-4 box-shadow">
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="card-text">{{ p.username }}</p>
                     <small class="text-muted">{{ p.date_added }}</small>
                   </div>
-                  <div style="width:100%;height:400px;">
+                  <div style="width:100%;height:100%;">
                     <img src="{{ p.image.url }}" style="float:left;width:100%;height:100%;object-fit:contain;;"/>
                   </div>
                   <hr />
