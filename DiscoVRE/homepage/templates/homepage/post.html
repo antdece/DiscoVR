@@ -2,15 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Disco VR | Post</title>
+	<h1>Disco VR | Post</h1>
 </head>
 <body>
-	<img class="card-img-top" data-src="holder.js/100px425?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-
-	<form method="POST" action="{% url 'post' %}">
+	<form method="POST" enctype="multipart/form-data" action="{% url 'post' %}">
 		{% csrf_token %}
 
-		{{ form.description }}
+		<p>Description: {{ form.description }}</p>
+		<p>Image: {{ form.image }}</p>
 
 		{% if form.errors %}
 		<p>there are errors</p>
