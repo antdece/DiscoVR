@@ -31,6 +31,10 @@ def register(request):
 	return render(request, 'registration/register.html', context)
 
 @login_required
+def logout(request):
+	
+
+@login_required
 def post(request):
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)
