@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
@@ -32,7 +32,7 @@ def register(request):
 
 @login_required
 def logout(request):
-	
+	return
 
 @login_required
 def post(request):
