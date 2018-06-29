@@ -5,11 +5,17 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import PostForm
+from django.http import HttpResponseRedirect
 
 def index(request):
 	posts = Post.objects.order_by('-date_added')
-
-	context = {'posts' : posts}
+	
+	for post in posts:
+		is_liked = False
+		if post.likes.filter(id=request.user.id).exists():
+			is_liked = True
+			
+	context = {'posts' : posts, 'is_liked': is_liked}
 
 	return render(request, 'homepage/index.html', context)
 
@@ -52,6 +58,18 @@ def post(request):
 
 	form = PostForm()
 
-	context = {'form' : form}
+	context = {'form' : form,}
 
 	return render(request, 'homepage/post.html', context)
+
+@login_required
+def like_post(request):
+	post = get_object_or_404(Post, id=request.POST.get('post_id'))
+	is_liked = False
+	if post.likes.filter(id=request.user.id).exists():
+		post.likes.remove(request.user)
+		is_liked = False
+	else:	
+		post.likes.add(request.user)
+		is_liked = True
+	return redirect('index')

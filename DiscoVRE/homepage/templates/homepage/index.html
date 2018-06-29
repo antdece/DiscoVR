@@ -100,12 +100,19 @@
                     <img src="{{ p.image.url }}" style="float:center;width:100%;height:100%;object-fit:contain;"/>
                   </div>
                   <hr />
-                  <h6>Likes: {{ p.likes.count }}</h6>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Like</button>
+                      <form action="{% url 'like_post' %}" method="post">
+                        {% csrf_token %}
+                        {% if p.is_liked %}
+                          <button type="submit" name="post_id" value="{{ p.id }}" class="btn btn-sm btn-outline-warning">Dislike</button>
+                        {% else %}
+                          <button type="submit" name="post_id" value="{{ p.id }}" class="btn btn-sm btn-outline-secondary">Like</button>
+                        {% endif %}
+                      </form>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Comment</button>
                     </div>
+                    <p>{{ p.likes.count }} likes</p>
                   </div>
                   <hr />
                   <form method="post" action="{% url 'login' %}">
