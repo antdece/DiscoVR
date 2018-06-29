@@ -8,8 +8,7 @@ class Post(models.Model):
 	description = models.TextField()
 	date_added = models.DateTimeField(default=timezone.now)
 	image = models.FileField(null=True, blank=True)
-
-	likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes')
+	likes = models.ManyToManyField(User, blank=True, related_name='likes')
 
 	def __str__(self):
 		return '<Username: {}, ID: {}>'.format(self.username, self.id)
